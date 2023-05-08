@@ -170,7 +170,7 @@ function checkboxValid() {
 }
 
 function conditionsValid() {
-  if (conditions.checked === true) {
+  if (conditions.checked) {
     document.getElementById("conditionsError").style.opacity="0";
     return true;
   }
