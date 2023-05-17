@@ -34,7 +34,7 @@ img {
 .logoTop {
   margin-top: 20px;
   margin-left: 35px;
-  height: 30px;
+  height: 20px;
 }
 }
 
@@ -78,11 +78,17 @@ img {
 
 
 @media screen and (max-width: 768px) {
+
+  .logoTop {
+    margin-top: 20px;
+    margin-left: 30px;
+  }
+
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: 5px;
+    margin-top: 20px;
     color: red;
     font-size: 30px;
   }
@@ -110,7 +116,7 @@ img {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: 20px;
+    margin-top: 10px;
     color: red;
     font-size: 20px;
   }
@@ -234,30 +240,6 @@ input {
   border-radius: 8px;
   font-size: 20px;
   height: 48px;
-}
-.formData[data-error]::after {
-  content: attr(data-error);
-  font-size: 0.4em;
-  color: #e54858;
-  display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  text-align: right;
-  line-height: 0.3;
-  opacity: 0;
-  transition: 0.3s;
-}
-.formData[data-error-visible="true"]::after {
-  opacity: 1;
-}
-.formData[data-error-visible="true"] .text-control {
-  border: 2px solid #e54858;
-}
-
-.error {
-  font-size: 0.4em;
-  color: red;
-  opacity: 0;
 }
 
 .checkbox-label,
@@ -569,6 +551,7 @@ footer {
   .hero-text {
     width: 90%;
     font-size: 13px;
+    margin-top: 10px;
   }
 }
 
@@ -582,3 +565,19 @@ footer {
   }
 }
 
+.error > input {
+  border: solid 2px red;
+}
+
+.error > span {
+  color: red;
+  font-size: 12px;
+}
+
+.success > input {
+  border: solid 2px green;
+}
+
+.conditionError {
+  text-align: start;
+}

@@ -21,7 +21,7 @@ const birthdate = document.getElementById ("birthdate");
 const quantity = document.getElementById('quantity');
 const checkboxes = document.querySelectorAll(".checkbox-input");
 const conditions = document.getElementById('checkbox1');
-
+const checkError = document.getElementById('checkboxError');
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -78,15 +78,29 @@ function validate () {
   }
 }
 
+function error(element, message) {
+  const formData = element.parentElement;
+  const displayError = formData.querySelector(".error");
+  displayError.innerHTML = message;
+  formData.classList.add("error");
+  formData.classList.remove("success");
+}
+
+function success(element) {
+  const formData = element.parentElement;
+  const displayError = formData.querySelector(".error");
+  displayError.innerHTML = "";
+  formData.classList.add("success");
+  formData.classList.remove("error");
+}
+
 function firstValid() {
   if (firstName.value.length === '' || firstName.value.length < 2) {
-    document.getElementById("first").style.border="2px solid red";
-    document.getElementById("firstError").style.opacity="1";
+    error(firstName, "veuillez entrer 2 caractères ou plus pour le champ du prénom.");
     return false;
   } 
   else {
-    document.getElementById("first").style.border="2px solid green";
-    document.getElementById("firstError").style.opacity="0";
+    success(firstName);
     return true;
   }
 
@@ -94,13 +108,11 @@ function firstValid() {
 
 function lastValid() {
   if (lastName.value.length === '' || lastName.value.length < 2) {
-    document.getElementById("last").style.border="2px solid red";
-    document.getElementById("lastError").style.opacity="1";
+    error(lastName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
     return false;
   } 
   else {
-    document.getElementById("last").style.border="2px solid green";
-    document.getElementById("lastError").style.opacity="0";
+    success(lastName);
     return true;
   }
 
@@ -109,13 +121,11 @@ function lastValid() {
 function emailValid() {
   let regexEmail = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
   if (regexEmail.test(email.value) === false) {
-    document.getElementById("email").style.border="2px solid red";
-    document.getElementById("emailError").style.opacity="1";
+    error(email, "Veuillez entrer un email valide.");
     return false;
   } 
   else {
-    document.getElementById("email").style.border="2px solid green";
-    document.getElementById("emailError").style.opacity="0";
+    success(email);
     return true;
   }
 
@@ -124,13 +134,11 @@ function emailValid() {
 function birthdateValid() {
   let regexBirthdate = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
   if (birthdate.value === '' && regexBirthdate.test(birthdate.value) === false) {
-    document.getElementById("birthdate").style.border="2px solid red";
-    document.getElementById("birthdateError").style.opacity="1";
+    error(birthdate, "Vous devez entrer votre date de naissance.");
     return false;
   } 
   else {
-    document.getElementById("birthdate").style.border="2px solid green";
-    document.getElementById("birthdateError").style.opacity="0";
+    success(birthdate);
     return true;
   }
 
@@ -139,13 +147,11 @@ function birthdateValid() {
 function quantityValid() {
   let regexQuantity = /^[0-9]{1,2}$/;
   if (regexQuantity.test(quantity.value) === false) {
-    document.getElementById("quantity").style.border="2px solid red";
-    document.getElementById("quantityError").style.opacity="1";
+    error(quantity, "Veuillez entrer un nombre valide.");
     return false;
   } 
   else {
-    document.getElementById("quantity").style.border="2px solid green";
-    document.getElementById("quantityError").style.opacity="0";
+    success(quantity);
     return true;
   }
 
@@ -160,22 +166,23 @@ function checkboxValid() {
     }
   }
   if (isChecked) {
-    document.getElementById("checkboxError").style.opacity="0";
+    success(checkError)
     return true;
   } else {
-    document.getElementById("checkboxError").style.opacity="1";
+    error(checkError, "Vous devez choisir une option.");
     return false;
     
   }
 }
 
 function conditionsValid() {
+  const conditionsE = document.getElementById("conditionError");
   if (conditions.checked) {
-    document.getElementById("conditionsError").style.opacity="0";
+    success(conditionsE);
     return true;
   }
   else {
-  document.getElementById("conditionsError").style.opacity="1";
+  error(conditionsE, "Vous devez vérifier que vous acceptez les termes et conditions.");
   return false;
 }  
     
