@@ -22,6 +22,7 @@ const quantity = document.getElementById('quantity');
 const checkboxes = document.querySelectorAll(".checkbox-input");
 const conditions = document.getElementById('checkbox1');
 const checkError = document.getElementById('checkboxError');
+const conditionsE = document.getElementById('conditionsError');
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -44,7 +45,6 @@ function closeConfirmation() {
 }
 
 // modal check and validation
-
 form.addEventListener('submit', function(e) {
   if (validate() === false) {
   e.preventDefault();}
@@ -62,7 +62,8 @@ function validate () {
   emailValid();
   birthdateValid();
   quantityValid();
-  checkboxValid()
+  checkboxValid();
+  conditionsValid();
    if (
     firstValid() &&
     lastValid() &&
@@ -166,7 +167,7 @@ function checkboxValid() {
     }
   }
   if (isChecked) {
-    success(checkError)
+    success(checkError);
     return true;
   } else {
     error(checkError, "Vous devez choisir une option.");
@@ -176,7 +177,6 @@ function checkboxValid() {
 }
 
 function conditionsValid() {
-  const conditionsE = document.getElementById("conditionError");
   if (conditions.checked) {
     success(conditionsE);
     return true;
